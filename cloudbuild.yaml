@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/pathwaytips-org/pathwaytips-org:$SHORT_SHA', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/pathwaytips-org/pathwaytips-org:$SHORT_SHA']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'pathwaytips-org', '--region=us-central1', '--platform=managed', '--image=gcr.io/pathwaytips-org/pathwaytips-org:$SHORT_SHA']
