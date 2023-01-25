@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/pathwaytips-org/cloudrun-nodejs:$SHORT_SHA', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-central1-docker.pkg.dev/pathwaytips-org/cloudrun-nodejs:$SHORT_SHA']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'cloudrun-nodejs', '--region=us-central1', '--platform=managed', '--allow-unauthenticated', '--image=us-central1-docker.pkg.dev/pathwaytips-org:$SHORT_SHA']
