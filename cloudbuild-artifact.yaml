@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/dogwood-terra-411701/my-artifact:$SHORT_SHA', '.']
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/dogwood-terra-411701/my-artifact', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/dogwood-terra-411701/my-artifact:$SHORT_SHA']
+  args: ['push', 'us-central1-docker.pkg.dev/dogwood-terra-411701/my-artifact']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'my-artifact', '--region=us-central1', '--platform=managed', '--allow-unauthenticated', '--image=us-central1-docker.pkg.dev/dogwood-terra-411701/my-artifact:$SHORT_SHA']
+  args: ['beta', 'run', 'deploy', 'my-artifact', '--region=us-central1', '--platform=managed', '--allow-unauthenticated', '--image=us-central1-docker.pkg.dev/dogwood-terra-411701/my-artifact']
